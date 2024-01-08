@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class EnemyMove : MonoBehaviour
 {
     Animator anim;
     NavMeshAgent nvAgent;
-    public Transform Player;    
+    public Transform Player;
+    public Image hpBar;
+
+    public Text txt;
+    int score;
     
     void Start()
     {
@@ -45,5 +50,13 @@ public class EnemyMove : MonoBehaviour
         }
     }
 
-    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Bullet")
+        {
+            hpBar.fillAmount -= 0.25f;
+            score++;
+            txt.text = "Score : " + score;
+        }
+    }
 }
