@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EnemyMove : MonoBehaviour
 {
@@ -57,6 +57,11 @@ public class EnemyMove : MonoBehaviour
             hpBar.fillAmount -= 0.25f;
             score++;
             txt.text = "Score : " + score;
+
+            if(score == 4)
+            {
+                SceneManager.LoadScene("SecondScene");
+            }
         }
     }
 }
